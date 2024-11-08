@@ -22,4 +22,4 @@ after in for_server folder run bot and server with command "nodemon bottwo.js"
 >
 after run server in main folder
 >
-for scrap site run command "nodemon scrapsite.js --ignore 'files/*"
+for scrap site run command "nodemon run.js --ignore 'files/*"
