@@ -47,7 +47,6 @@ module.exports = {
                 }
                 console.log('Новые данные записаны в файл успешно!');
                 sendJsonFileOnServer();
-                page.reload();
             });
             }
           } catch (error) {
