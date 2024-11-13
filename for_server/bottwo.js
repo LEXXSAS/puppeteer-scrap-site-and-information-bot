@@ -32,7 +32,7 @@ const botMiddleware = async(req, res, next) => {
   next()
 }
 
-app.post('/filetwo', moveJsonFileMiddleware, (req, res) => {
+app.post('/filetwo', moveJsonFileMiddleware, botMiddleware, (req, res) => {
     res.send('Json file успешно сохранен на сервере!')
 });
 
@@ -52,6 +52,19 @@ bot.help((ctx) => {
   ctx.reply('Отправьте /start для приветствия');
   ctx.reply('Отправьте /menu для показа меню');
 });
+
+const inlineKeyboard = [
+  [
+    {
+      text: `Получить список последних ${arraySliceNumber} заявок`,
+      callback_data: 'getfile'
+    }
+  ],
+];
+
+const replyMarkup = {
+  inline_keyboard: inlineKeyboard
+};
 
 bot.command('menu', (ctx) => {
   ctx.reply(
@@ -151,8 +164,8 @@ bot.use((ctx, next) => {
   }
 })
 
-function sendAlertMessageInChat(messsage) {
-  bot.telegram.sendMessage(process.env.CHAT_ID, messsage)
+async function sendAlertMessageInChat(messsage) {
+  bot.telegram.sendMessage(process.env.CHAT_ID, messsage, { reply_markup: replyMarkup })
 }
 
 bot.launch();

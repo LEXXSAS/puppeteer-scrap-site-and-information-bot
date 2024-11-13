@@ -18,7 +18,7 @@ CHAT_ID="your_chat_id"
 in main folder and for_server folder
 run command "node init -y" and "node install"
 >
-after in for_server folder run bot and server with command "nodemon bottwo.js"
+after in for_server folder run bot and server with command "nodemon bottwo.js --ignore 'files/*'"
 >
 after run server in main folder
 >

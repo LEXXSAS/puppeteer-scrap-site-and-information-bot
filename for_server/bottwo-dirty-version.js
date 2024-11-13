@@ -71,6 +71,19 @@ bot.help((ctx) => {
   // ctx.reply('Отправьте /autosend для автоотправки списка заявок');
 });
 
+const inlineKeyboard = [
+  [
+    {
+      text: `Получить список последних ${arraySliceNumber} заявок`,
+      callback_data: 'getfile'
+    }
+  ],
+];
+
+const replyMarkup = {
+  inline_keyboard: inlineKeyboard
+};
+
 bot.command('menu', (ctx) => {
   ctx.reply(
     'Выберите действие',
@@ -169,8 +182,10 @@ bot.use((ctx, next) => {
   }
 })
 
-function sendAlertMessageInChat(messsage) {
-  bot.telegram.sendMessage(process.env.CHAT_ID, messsage)
+async function sendAlertMessageInChat(messsage) {
+  // console.log('Успешно 000')
+  // bot.telegram.sendMessage(process.env.CHAT_ID, messsage)
+  bot.telegram.sendMessage(process.env.CHAT_ID, messsage, { reply_markup: replyMarkup })
 }
 
 // автоотправка сообщения по интервалу
