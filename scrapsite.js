@@ -36,7 +36,9 @@ module.exports = {
         } else {
           try {
             let oldData = JSON.parse(fileContent);
-            if (JSON.stringify(oldData) === JSON.stringify(arrone)) {
+            let newData = arrone[0].url;
+            let oldData1 = oldData[0].url;
+            if (newData === oldData1) {
               console.log('Новых данных нет');
               page.reload();
             } else {
