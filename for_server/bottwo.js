@@ -91,8 +91,10 @@ const sendLocalFileWithTimeout = (ctx, time) => {
     const jsonFromDataNew = JSON.parse(datanew);
 
     Object.values(jsonFromDataNew.slice(0, arraySliceNumber)).forEach((item) => {
+      let desc = item.description;
+      let descriptionregex = desc.replace(/[\_]+/gi, " ");
       const markdownnew = `
-      url: *${item.url}*\ndescription: _${item.description}_
+        url: *${item.url}*\ndescription: _${descriptionregex}_
       `;
       ctx.reply(markdownnew, { parse_mode: 'Markdown' });
     })
